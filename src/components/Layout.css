@@ -1,0 +1,17 @@
+/* Layout.css */
+.layout {
+    display: flex;
+    height: 100vh; 
+  }
+  
+  .sidebar {
+    width: 320px; 
+    background-color: #f4f4f4; 
+    padding: 0px;
+  }
+  
+  .content {
+    flex-grow: 1; 
+    padding: 0px;
+    background-color: #fff; /* Content background color */
+  }
