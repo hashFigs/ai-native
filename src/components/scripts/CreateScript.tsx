@@ -1,98 +1,238 @@
 import React, { useState } from 'react';
-import { TextInput, Text } from 'react-native-paper';
-import { View, StyleSheet } from 'react-native';
+import { TextInput, Text,  Button as PaperButton  } from 'react-native-paper';
+import { View, Button, Alert} from 'react-native';
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import Select, { SelectChangeEvent } from '@mui/material/Select'; // Import SelectChangeEvent
+import Select, { SelectChangeEvent } from '@mui/material/Select'; 
 import MenuItem from '@mui/material/MenuItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
 const CreateScript: React.FC = () => {
-  const [language, setLanguage] = useState("");
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [language, setLanguage] = useState("");
+
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [formatType, setFormatType] = useState("");
+  const [videoTopic, setVideoTopic] = useState("");
+  const [audienceDescription, setAudienceDescription] = useState(""); 
+  const [selectedVoice, setSelectedVoice] = useState("");
+
+
 
   const handleCategorySelect = (event: SelectChangeEvent<string>) => {
-    const {
-      target: { value },
-    } = event;
+    const { target: { value } } = event;
     setSelectedCategory(value);
   };
 
+  const handleFormatSelect = (event: SelectChangeEvent<string>) => {
+    const { target: { value } } = event;
+    setFormatType(value);
+  };
+  const handleLanguageSelect = (event: SelectChangeEvent<string>) => {
+    const { target: { value } } = event;
+    setLanguage(value);
+  };
+  const handleVoiceSelect = (event: SelectChangeEvent<string>) => {
+    const { target: { value } } = event;
+    setSelectedVoice(value);
+  };
+
+  const handleSubmit = () => {
+    console.log( "Form Submitted", `Video Topic: ${videoTopic}\nTitle: ${title}`)
+  };
+
+
   return (
-    <View style={styles.container}>
-      <h3>Script Creation</h3>
+    <>
+
+    {/* Video Secction */}
+    <View style = {{marginBottom: 40, paddingBottom:34}}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 30, backgroundColor: '#ccc', borderRadius: 15, width: '100%', maxWidth: '80%', alignSelf: 'center' }}>
       
-      <View style={styles.fieldContainer}>
-        <Text style={styles.label}>Language:</Text>
-        <TextInput
-          label="Language"
-          value={language}
-          style={styles.input}
-          onChangeText={setLanguage}
-        />
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', padding: 20 }}>   
+         {/* Left Column */}
+          <View style={{ flex: 1, padding: 15, marginRight: 10 }}>
+            <Text style={{ fontSize: 16, marginBottom: 5 }}>Video Topic:</Text>
+            <TextInput
+              label="Enter Video Topic"
+              value={videoTopic}
+              multiline={true} 
+              numberOfLines={11} 
+              onChangeText={setVideoTopic}
+              style={{
+                backgroundColor: '#fff', 
+                padding: 10,
+                borderRadius: 5, 
+                color: '#333', 
+              }}
+            />
+          </View>
+
+         {/* Right Column */}
+          <View style={{ flex: 1, padding: 15 }}>
+            {/* Format */}
+            <View style={{ marginBottom: 15 }}>
+              <Text style={{ fontSize: 16, marginBottom: 5 }}>Format Type:</Text>
+              <FormControl variant="outlined" fullWidth style={{ backgroundColor: '#fff', borderRadius: 5 }}>
+                <Select
+                  value={formatType}
+                  onChange={handleFormatSelect}
+                  input={<OutlinedInput style={{ padding: 10, backgroundColor: '#fff', borderRadius: 5 }} />}
+                  displayEmpty
+                  style={{
+                    backgroundColor: '#fff',
+                    color: '#333',
+                  }}
+                >
+                  <MenuItem value="Format 1">Comedy</MenuItem>
+                  <MenuItem value="Format 2">Entrepreneurship</MenuItem>
+                  <MenuItem value="Format 3">Vlog</MenuItem>
+                </Select>
+              </FormControl>
+            </View>
+
+            {/* Target Length */}
+            <View style={{ marginBottom: 15 }}>
+              <Text style={{ fontSize: 16, marginBottom: 5 }}>Target Length:</Text>
+              <FormControl variant="outlined" fullWidth style={{ backgroundColor: '#fff', borderRadius: 5 }}>
+                <Select
+                  value={selectedCategory}
+                  onChange={handleCategorySelect}
+                  input={<OutlinedInput style={{ padding: 10, backgroundColor: '#fff', borderRadius: 5 }} />}
+                  displayEmpty
+                  style={{
+                    backgroundColor: '#fff',
+                    color: '#333',
+                  }}
+                >
+                  <MenuItem value="Category 1">5 min, 800 words</MenuItem>
+                  <MenuItem value="Category 2">8 min, 1000 words</MenuItem>
+                  <MenuItem value="Category 3">10 min, 1200 words</MenuItem>
+                </Select>
+              </FormControl>
+            </View>
+
+            {/* Video Title */}
+            <View style={{ marginBottom: 15 }}>
+              <Text style={{ fontSize: 16, marginBottom: 5 }}>Video Title:</Text>
+              <TextInput
+                label="Video Title"
+                value={title}
+                style={{
+                  marginBottom: 10,
+                  backgroundColor: '#fff',
+                  padding: 10,
+                  borderRadius: 5,  
+                  color: '#333',  
+                }}
+                onChangeText={setTitle}
+              />
+            </View>
+          </View>
+        </View>
+
+
       </View>
 
-      <View style={styles.fieldContainer}>
-        <Text style={styles.label}>Title:</Text>
-        <TextInput
-          label="Title"
-          value={title}
-          style={styles.input}
-          onChangeText={setTitle}
-        />
+
+
+     {/* Audience Secction */}
+
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 30, backgroundColor: '#ccc', borderRadius: 15, width: '100%', maxWidth: '80%', alignSelf: 'center' }}>
+      
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', padding: 20 }}>   
+       {/* Left Column */}
+        <View style={{ flex: 1, padding: 15, marginRight: 10 }}>
+          <Text style={{ fontSize: 16, marginBottom: 5 }}>Audience Description:</Text>
+          <TextInput
+            label="Enter Audience Description"
+            value={audienceDescription}
+            multiline={true} 
+            numberOfLines={11} 
+            onChangeText={setAudienceDescription}
+            style={{
+              backgroundColor: '#fff', 
+              padding: 10,
+              borderRadius: 5, 
+              color: '#333', 
+            }}
+          />
+        </View>
+
+       {/* Right Column */}
+        <View style={{ flex: 1, padding: 15 }}>
+          {/* Language */}
+          <View style={{ marginBottom: 15 }}>
+            <Text style={{ fontSize: 16, marginBottom: 5 }}>Language:</Text>
+            <FormControl variant="outlined" fullWidth style={{ backgroundColor: '#fff', borderRadius: 5 }}>
+              <Select
+                value={language}
+                onChange={handleLanguageSelect}
+                input={<OutlinedInput style={{ padding: 10, backgroundColor: '#fff', borderRadius: 5 }} />}
+                displayEmpty
+                style={{
+                  backgroundColor: '#fff',
+                  color: '#333',
+                }}
+              >
+                <MenuItem value="Langauge 1">Catalan</MenuItem>
+                <MenuItem value="Language 2">English</MenuItem>
+                <MenuItem value="Language 3">Spanish</MenuItem>
+              </Select>
+            </FormControl>
+          </View>
+
+          {/* Voice */}
+          <View style={{ marginBottom: 15 }}>
+            <Text style={{ fontSize: 16, marginBottom: 5 }}>Voice:</Text>
+            <FormControl variant="outlined" fullWidth style={{ backgroundColor: '#fff', borderRadius: 5 }}>
+              <Select
+                value={selectedVoice}
+                onChange={handleVoiceSelect}
+                input={<OutlinedInput style={{ padding: 10, backgroundColor: '#fff', borderRadius: 5 }} />}
+                displayEmpty
+                style={{
+                  backgroundColor: '#fff',
+                  color: '#333',
+                }}
+              >
+                <MenuItem value="Voice 1">profile 1</MenuItem>
+                <MenuItem value="Voice 2">profile 2</MenuItem>
+                <MenuItem value="Voice 3">profile 3</MenuItem>
+              </Select>
+            </FormControl>
+          </View>
+
+          {/* script number */}
+          <View style={{ marginBottom: 15 }}>
+            <Text style={{ fontSize: 16, marginBottom: 5 }}>Script Number:</Text>
+            <TextInput
+              label="Id:: 1"
+              value={title}
+              style={{
+                marginBottom: 10,
+                backgroundColor: '#fff',
+                padding: 10,
+                borderRadius: 5,  
+                color: '#333',  
+              }}
+              onChangeText={setTitle}
+            />
+          </View>
+        </View>
+      </View>
+    </View>      
+    </View>    
+    
+      {/* Submit Button */}
+      <View style={{ alignItems: 'center', marginBottom: 20 }}>
+      <PaperButton mode="contained" onPress={handleSubmit}>
+          Submit
+      </PaperButton>
       </View>
 
-      <View style={styles.fieldContainer}>
-        <Text style={styles.label}>Category:</Text>
-        <FormControl variant="outlined" fullWidth>
-           <InputLabel>Category</InputLabel>
-          <Select
-            value={selectedCategory}
-            onChange={handleCategorySelect}
-            input={<OutlinedInput label="Category" />}
-            displayEmpty
-          >
-            {/* <MenuItem value="">
-              <em>Select a category</em>
-            </MenuItem> */}
-            <MenuItem value="Category 1">Category 1</MenuItem>
-            <MenuItem value="Category 2">Category 2</MenuItem>
-            <MenuItem value="Category 3">Category 3</MenuItem>
-          </Select>
-        </FormControl>
-      </View>
 
-      <View style={styles.fieldContainer}>
-        <Text style={styles.label}>Description:</Text>
-        <TextInput
-          label="Description"
-          value={description}
-          style={styles.input}
-          onChangeText={setDescription}
-        />
-      </View>
-    </View>
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 16,
-  },
-  fieldContainer: {
-    marginBottom: 15,
-  },
-  label: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
-  input: {
-    marginBottom: 10,
-  },
-});
 
 export default CreateScript;

@@ -17,7 +17,9 @@ const SubMenu: React.FC = () => {
   ];
 
   return (
-    <View style={styles.menuContainer}>
+    <>
+    {isLoggedIn && (
+    <View style={ { flexDirection: 'column', alignItems: 'center', paddingVertical: 20, backgroundColor: '#666'}}>
       <View style={styles.menuItems}>
         {menuItems.map((item, index) => (
           <TouchableOpacity key={index} onPress={() => navigate(item.path)}>
@@ -30,22 +32,20 @@ const SubMenu: React.FC = () => {
           </TouchableOpacity>
         ))}
       </View>
-      {isLoggedIn && (
-        <TouchableOpacity onPress={logOut}>
-          <Text style={styles.logoutText}>Log Out</Text>
-        </TouchableOpacity>
-      )}
     </View>
+    )}
+    {!isLoggedIn && (
+          <View style={ { flexDirection: 'column', alignItems: 'center', paddingVertical: 20, backgroundColor: '#666'}}>
+            Submenu
+          </View>
+          )}
+    
+</>
   );
 };
 
 const styles = StyleSheet.create({
-  menuContainer: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    paddingVertical: 20,
-    backgroundColor: '#666',
-  },
+ 
   menuItems: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   activeMenuItem: {
     borderBottomWidth: 2,
-    borderBottomColor: '#fff', // Underline the active menu item
+    borderBottomColor: '#fff',
   },
   logoutText: {
     marginTop: 20,
