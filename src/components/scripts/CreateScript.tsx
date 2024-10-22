@@ -27,14 +27,13 @@ const CreateScript: React.FC = () => {
 
   const handleSubmit = async () => {
     console.log("Form Submitted", formData);
-   
     setError(null);
     setSuccess(false);
-  
+  /* 
     if (!formData.title || !formData.language || !formData.videoTopic) {
       setError('Please fill in all required fields.');
       return;
-    }
+    } */
 
     try {
       const response = await apiRequest('/script/create', 'POST', formData); 
