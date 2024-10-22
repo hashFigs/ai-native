@@ -3,6 +3,8 @@ import VideoSection from './VideoSection';
 import AudienceSection from './AudienceSection';
 import SubmitButton from '../SubmitButton';
 import { apiRequest } from '../../utils/apiClients'; 
+import { useNavigate } from 'react-router-dom'; 
+
 
 const CreateScript: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -24,6 +26,7 @@ const CreateScript: React.FC = () => {
       [field]: value,
     });
   };
+  const navigate = useNavigate(); 
 
   const handleSubmit = async () => {
     console.log("Form Submitted", formData);
@@ -39,6 +42,8 @@ const CreateScript: React.FC = () => {
       const response = await apiRequest('/script/create', 'POST', formData); 
       console.log("@response", response);
       setSuccess(true);
+      navigate('/edit-script', { state: { response } });
+
     } catch (error) {
       setError('Script creation failed. Please try again.');
     }

@@ -14,6 +14,7 @@ import ScriptPage from './pages/Scripts/ScriptPage';
 import ChannelSettingsPage from './pages/ChannelSettings/ChannelSettingsPage';
 import ThumbnailPage from './pages/Thumbnail/ThumbnailPage';
 import AnalyticsPage from './pages/Analytics/AnalyticsPage';
+import EditScript from './pages/Scripts/EditScript';
 import LogInModal from './components/LogInModal';
 import SignUpModal from './components/SignUpModal';
 import LandingPage from './pages/LandingPage';
@@ -29,6 +30,8 @@ function App() {
                 <Route path="/signup" element={<SignUp />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/" element={<LandingPage />} />
+                  <Route path="/edit-script" element={<EditScript />} />
+
                   
                   <Route
                     path="/portal"
