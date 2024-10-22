@@ -18,60 +18,58 @@ import AnalyticsPage from './pages/Analytics/AnalyticsPage';
 function App() {
   return (
     <SafeAreaProvider>
-        <PaperProvider> {/* Wrap with PaperProvider */}
-
-      <Router>
-         <AuthProvider>
-         <Layout>
-          <Routes>
-          <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/portal"
-          element={
-            <PrivateRoute>
-              <HomePage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/youtubeChannelSeetings"
-          element={
-            <PrivateRoute>
-              <ChannelSettingsPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/script"
-          element={
-            <PrivateRoute>
-              <ScriptPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/thumbnails"
-          element={
-            <PrivateRoute>
-              <ThumbnailPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/analytics"
-          element={
-            <PrivateRoute>
-              <AnalyticsPage />
-            </PrivateRoute>
-          }
-        />
-          </Routes>
-        </Layout>
-        </AuthProvider>
-      </Router>
-      </PaperProvider>
-
+      <PaperProvider> 
+        <Router>
+          <AuthProvider>
+            <Layout>
+              <Routes>
+                <Route path="/signup" element={<SignUp />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route
+                    path="/portal"
+                    element={
+                      <PrivateRoute>
+                        <HomePage />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/youtubeChannelSeetings"
+                    element={
+                      <PrivateRoute>
+                        <ChannelSettingsPage />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/script"
+                    element={
+                      <PrivateRoute>
+                        <ScriptPage />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/thumbnails"
+                    element={
+                      <PrivateRoute>
+                        <ThumbnailPage />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/analytics"
+                    element={
+                      <PrivateRoute>
+                        <AnalyticsPage />
+                      </PrivateRoute>
+                    }
+                  />
+                </Routes>
+              </Layout>
+            </AuthProvider>
+          </Router>
+        </PaperProvider>
       </SafeAreaProvider>
     
   );

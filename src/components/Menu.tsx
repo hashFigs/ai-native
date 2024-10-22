@@ -29,9 +29,13 @@ const Menu: React.FC<{
         </View>
       ) : (
         <View style={styles.buttonContainer}>
-          <Button mode="contained" onPress={onShowLogin} style={styles.button}>Log In</Button>
-          <Button mode="contained" onPress={onShowSignUp} style={styles.button}>Sign Up</Button>
-        </View>
+        <Button mode="contained" onPress={onShowLogin} style={styles.buttonAuth}>
+          Log In
+        </Button>
+        <Button mode="contained" onPress={onShowSignUp} style={styles.buttonAuth}>
+          Sign Up
+        </Button>
+      </View>
       )}
     </nav>
   );
@@ -39,27 +43,34 @@ const Menu: React.FC<{
 
 const styles = StyleSheet.create({
     buttonContainer: {
-      flexDirection: 'column',
-      alignItems: 'center',  
+      flexDirection: 'row',
+      alignItems: 'center',   
+      justifyContent: 'flex-end',
+      paddingRight: 36,
+      paddingTop:16 
+    },
+    buttonAuth: {
+      marginLeft: 10,            
+      marginBottom: 10,  
     },
     button: {
       marginBottom: 10,  
     },
     dividerContainer: {
-      flexDirection: 'row',   
+     /*  flexDirection: 'row',   
       alignItems: 'center',   
       marginVertical: 10,     
-      width: '100%',          
+      width: '100%',   */        
     },
     line: {
-      flex: 1,                
+     /*  flex: 1,                
       height: 1,              
-      backgroundColor: '#ccc',  
+      backgroundColor: '#ccc',  */ 
     },
     dividerText: {
-      marginHorizontal: 10,   
+      /* marginHorizontal: 10,   
       color: '#666',          
-      fontWeight: 'bold',     
+      fontWeight: 'bold',      */
     },
   });
 

@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
-import { TextInput, Text, Menu} from 'react-native-paper';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { MdArrowDropDown } from 'react-icons/md';  // Material Design dropdown icon
-
+import { TextInput, Text } from 'react-native-paper';
+import { View, StyleSheet } from 'react-native';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select, { SelectChangeEvent } from '@mui/material/Select'; // Import SelectChangeEvent
+import MenuItem from '@mui/material/MenuItem';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 const CreateScript: React.FC = () => {
   const [language, setLanguage] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [menuVisible, setMenuVisible] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("Select a category");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  const openMenu = () => setMenuVisible(true);
-  const closeMenu = () => setMenuVisible(false);
-
-  const handleCategorySelect = (category: string) => {
-    setSelectedCategory(category);
-    closeMenu(); 
+  const handleCategorySelect = (event: SelectChangeEvent<string>) => {
+    const {
+      target: { value },
+    } = event;
+    setSelectedCategory(value);
   };
 
   return (
@@ -45,25 +46,22 @@ const CreateScript: React.FC = () => {
 
       <View style={styles.fieldContainer}>
         <Text style={styles.label}>Category:</Text>
-        <TouchableOpacity onPress={openMenu}>
-        <TextInput
-          label="Category"
-          value={selectedCategory}
-          style={styles.input}
-          editable={false} // Prevent manual editing
-          right={<MdArrowDropDown size={24} />
-        }
-        />
-        </TouchableOpacity>
-        <Menu
-          visible={menuVisible}
-          onDismiss={closeMenu}
-          anchor={"s"}
-        >
-          <Menu.Item onPress={() => handleCategorySelect("Category 1")} title="Category 1" />
-          <Menu.Item onPress={() => handleCategorySelect("Category 2")} title="Category 2" />
-          <Menu.Item onPress={() => handleCategorySelect("Category 3")} title="Category 3" />
-        </Menu>
+        <FormControl variant="outlined" fullWidth>
+           <InputLabel>Category</InputLabel>
+          <Select
+            value={selectedCategory}
+            onChange={handleCategorySelect}
+            input={<OutlinedInput label="Category" />}
+            displayEmpty
+          >
+            {/* <MenuItem value="">
+              <em>Select a category</em>
+            </MenuItem> */}
+            <MenuItem value="Category 1">Category 1</MenuItem>
+            <MenuItem value="Category 2">Category 2</MenuItem>
+            <MenuItem value="Category 3">Category 3</MenuItem>
+          </Select>
+        </FormControl>
       </View>
 
       <View style={styles.fieldContainer}>
@@ -86,7 +84,6 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   fieldContainer: {
-    
     marginBottom: 15,
   },
   label: {
