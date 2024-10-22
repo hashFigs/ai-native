@@ -14,6 +14,9 @@ import ScriptPage from './pages/Scripts/ScriptPage';
 import ChannelSettingsPage from './pages/ChannelSettings/ChannelSettingsPage';
 import ThumbnailPage from './pages/Thumbnail/ThumbnailPage';
 import AnalyticsPage from './pages/Analytics/AnalyticsPage';
+import LogInModal from './components/LogInModal';
+import SignUpModal from './components/SignUpModal';
+import LandingPage from './pages/LandingPage';
 
 function App() {
   return (
@@ -25,6 +28,8 @@ function App() {
               <Routes>
                 <Route path="/signup" element={<SignUp />} />
                   <Route path="/login" element={<Login />} />
+                  <Route path="/" element={<LandingPage />} />
+                  
                   <Route
                     path="/portal"
                     element={
@@ -67,7 +72,9 @@ function App() {
                   />
                 </Routes>
               </Layout>
-            </AuthProvider>
+            {/*   <LogInModal visible={true} onClose={()=>console.log("closing modal")} /> */}
+            
+            </AuthProvider>  
           </Router>
         </PaperProvider>
       </SafeAreaProvider>

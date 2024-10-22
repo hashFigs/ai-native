@@ -15,26 +15,18 @@ const Menu: React.FC<{
     <nav>
       {isLoggedIn ? (
         <View style={styles.buttonContainer}>
-          <Button onPress={logOut} mode="contained" style={styles.button}>Log Out</Button>
-          {/* YouTube Section */}
-          <View style={styles.dividerContainer}>
-            <View style={styles.line} />
-            <Text style={styles.dividerText}>YouTube</Text>
-            <View style={styles.line} />
-          </View>
-          <Button mode="contained" onPress={() => navigate('/youtubeChannelSeetings')} style={styles.button}>Channel Settings</Button>
-          <Button mode="contained" onPress={() => navigate('/script')} style={styles.button}>Scripts</Button>
-          <Button mode="contained" onPress={() => navigate('/thumbnails')} style={styles.button}>Thumbnail</Button>
-          <Button mode="contained" onPress={() => navigate('/analytics')} style={styles.button}>Analytics</Button>
+          <Button onPress={logOut} mode="contained" style={styles.button}>
+            Log Out
+          </Button>
         </View>
       ) : (
         <View style={styles.buttonContainer}>
-        <Button mode="contained" onPress={onShowLogin} style={styles.buttonAuth}>
-          Log In
-        </Button>
-        <Button mode="contained" onPress={onShowSignUp} style={styles.buttonAuth}>
-          Sign Up
-        </Button>
+          <Button mode="contained" onPress={onShowLogin} style={styles.buttonAuth}>
+            Log In
+          </Button>
+          <Button mode="contained" onPress={onShowSignUp} style={styles.buttonAuth}>
+            Sign Up
+          </Button>
       </View>
       )}
     </nav>

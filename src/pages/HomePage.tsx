@@ -6,7 +6,22 @@ const HomePage: React.FC = () => {
    
     
     return(
+        <>
         <h1> This is your home Page</h1>
+        <h1> This is your home Page</h1>
+        <h1> This is your home Page</h1>
+        <h1> This is your home Page</h1>
+        <h1> This is your home Page</h1>
+
+        <h1> This is your home Page</h1>
+        <h1> This is your home Page</h1>
+        <h1> This is your home Page</h1>
+        <h1> This is your home Page</h1>
+        <h1> This is your home Page</h1>
+        <h1> This is your home Page</h1>
+        <h1> This is your home Page</h1>
+        
+        </>
     )
 }
 
