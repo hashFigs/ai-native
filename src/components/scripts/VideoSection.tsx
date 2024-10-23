@@ -35,7 +35,7 @@ const VideoSection: React.FC<VideoSectionProps> = ({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 60,
-        backgroundColor: '#ccc',
+        backgroundColor: '#eee',
         borderRadius: 15,
         width: '100%',
         maxWidth: '80%',

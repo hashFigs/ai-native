@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View , StyleSheet} from 'react-native';
 import { Text, TextInput, Button } from 'react-native-paper';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -55,10 +55,10 @@ const EditScript: React.FC = () => {
             backgroundColor: '#fff',
             padding: 10,
             borderRadius: 5,
-            color: '#333',
+           
             height: 'auto',
   }}>
-            {formattedScript.map((_, index: number) => (
+            {formattedScript.map((line:string, index: number) => (
               <TextInput
                 key={index}
                 mode="outlined"
@@ -83,7 +83,7 @@ const EditScript: React.FC = () => {
 };
 
 // Basic styling for layout and elements
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -137,6 +137,6 @@ const styles = {
     padding: 10,
     backgroundColor: '#007bff',
   },
-};
+});
 
 export default EditScript;

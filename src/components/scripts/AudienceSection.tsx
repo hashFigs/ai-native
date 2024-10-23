@@ -25,7 +25,7 @@ const AudienceSection: React.FC<AudienceSectionProps> = ({
   setSelectedVoice,
 }) => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 0, backgroundColor: '#ccc', borderRadius: 15, width: '100%', maxWidth: '80%', alignSelf: 'center' }}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 0, backgroundColor: '#eee', borderRadius: 15, width: '100%', maxWidth: '80%', alignSelf: 'center' }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', padding: 20 }}>
         {/* Left Column */}
         <View style={{ flex: 1, padding: 15, marginRight: 10 }}>

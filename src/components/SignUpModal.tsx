@@ -35,7 +35,7 @@ const SignUpModal: React.FC<SignUpModalProps> = ({ visible, onClose }) => {
     }
 
     try {
-      //await apiRequest('/register', 'POST', formData);
+      await apiRequest('/register', 'POST', formData);
       setSuccess(true);
       onClose();  // Close modal after successful submission
     } catch (error) {

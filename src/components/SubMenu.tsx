@@ -3,12 +3,15 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';  
 import { useAuth } from '../context/AuthContext';
 
+
+
+
 const SubMenu: React.FC = () => {
   const { isLoggedIn, logOut } = useAuth();
   const navigate = useNavigate();
   const location = useLocation(); // To detect the current page
 
-  // Array of menu items
+  
   const menuItems = [
     { name: 'Channel Settings', path: '/youtubeChannelSeetings' },
     { name: 'Scripts', path: '/script' },

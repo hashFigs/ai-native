@@ -4,9 +4,10 @@ import SignUpModal from './SignUpModal';
 import LogInModal from './LogInModal';
 import Menu from './Menu';
 import SubMenu from './Submenu';
-import Logo from '../assets/logo.webp'; 
 import Footer from './Footer';
-import {  View, Image, Text } from 'react-native';  
+import {  View, Image, Text, Dimensions } from 'react-native';  
+
+import Logo from '../assets/logo.webp';
 
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -19,9 +20,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const openSignUpModal = () => setSignUpModalVisible(true);
   const openLogInModal = () => setLogInModalVisible(true);
 
+  const screenHeight = Dimensions.get('window').height;
+
   return (
 <>
-<View style={{ flex: 1, minHeight: '100vh', flexDirection: 'column' }}>
+<View style={{ flex: 1, minHeight: screenHeight, flexDirection: 'column' }}>
     {/* Menu and Header */}
     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10 }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10 }}>
@@ -32,8 +35,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     </View>
     
     {/* Submenu */}
-    <View style={{ color: '#fff', backgroundColor: '#666' }}>
-      <SubMenu onShowLogin={openLogInModal} onShowSignUp={openSignUpModal} />
+    <View style={{  backgroundColor: '#666' }}>
+      <SubMenu  />
     </View>
 
     {/* Main Content */}
