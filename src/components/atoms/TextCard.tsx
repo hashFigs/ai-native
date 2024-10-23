@@ -15,9 +15,9 @@ const TextCard: React.FC<TextCardProps> = ({ children }) => {
           alignItems: 'center',
           marginTop: 60,
           backgroundColor: '#fff', 
-          borderRadius: 15,
+          borderRadius: 9,
           width: '100%',
-          maxWidth: '80%',
+          maxWidth: '90%',
           alignSelf: 'center',
           padding: 20,
         }}
