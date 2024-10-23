@@ -7,7 +7,8 @@ import SubMenu from './SubMenu';
 import Footer from './Footer';
 import {  View, Image, Text, Dimensions } from 'react-native';  
 
-import Logo from '../assets/logo.webp';
+//import Logo from '../assets/logo.webp';
+import Logo2 from '../assets/logo2.webp';
 
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -28,7 +29,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     {/* Menu and Header */}
     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10 }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10 }}>
-        <Image source={Logo as any} style={{ width: 80, height: 80, resizeMode: 'contain' }} />
+        <Image source={Logo2 as any} style={{ width: 80, height: 80, resizeMode: 'contain' }} />
         <Text style={{ color: '#900', fontSize: 32, fontWeight: 'bold', padding: 10}}>Foloweo.AI</Text>
       </View>
       <Menu onShowLogin={openLogInModal} onShowSignUp={openSignUpModal} />
