@@ -13,16 +13,18 @@ const SubMenu: React.FC = () => {
 
   
   const menuItems = [
-    { name: 'Channel Settings', path: '/youtubeChannelSeetings' },
     { name: 'Scripts', path: '/script' },
-    { name: 'Thumbnail', path: '/thumbnails' },
-    { name: 'Analytics', path: '/analytics' },
+    { name: 'Engagement', path: '/engagement' },
+    { name: 'Tone', path: '/tone' },
+    { name: 'Insights', path: '/insights' },
+    { name: 'Prefereences', path: '/preferences' },
+
   ];
 
   return (
     <>
     {isLoggedIn && (
-    <View style={ { flexDirection: 'column', alignItems: 'center', paddingVertical: 20, backgroundColor: '#666'}}>
+    <View style={ { flexDirection: 'column', alignItems: 'center', paddingVertical: 20, backgroundColor: '#ccc'}}>
       <View style={styles.menuItems}>
         {menuItems.map((item, index) => (
           <TouchableOpacity key={index} onPress={() => navigate(item.path)}>

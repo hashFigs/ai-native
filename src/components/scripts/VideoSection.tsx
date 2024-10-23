@@ -1,9 +1,8 @@
-// VideoSection.tsx
 import React from 'react';
 import { Text, TextInput } from 'react-native-paper';
-import { View } from 'react-native'
+import { View } from 'react-native';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select'; 
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
@@ -30,50 +29,61 @@ const VideoSection: React.FC<VideoSectionProps> = ({
 }) => {
   return (
     <View style={{ marginBottom: 40, paddingBottom: 34 }}>
-      <View style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 60,
-        backgroundColor: '#eee',
-        borderRadius: 15,
-        width: '100%',
-        maxWidth: '80%',
-        alignSelf: 'center'
-      }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', padding: 20 }}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: 60,
+          backgroundColor: '#fff', // Set background color to white
+          borderRadius: 15,
+          width: '100%',
+          maxWidth: '80%',
+          alignSelf: 'center',
+          padding: 20,
+        }}
+      >
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
           {/* Left Column */}
-          <View style={{ flex: 1, padding: 15, marginRight: 10 }}>
-            <Text style={{ fontSize: 16, marginBottom: 5 }}>Video Topic:</Text>
+          <View style={{ flex: 1, paddingRight: 10 }}>
+            <Text style={{ fontSize: 16, marginBottom: 10 }}>Video Topic:</Text>
             <TextInput
               label="Enter Video Topic"
               value={videoTopic}
               multiline={true}
-              numberOfLines={11}
               onChangeText={setVideoTopic}
               style={{
-                backgroundColor: '#fff',
+                backgroundColor: '#fff', 
                 padding: 10,
                 borderRadius: 5,
                 color: '#333',
+                borderWidth: 1,
+                borderColor: '#ccc', 
+                flex: 1, 
+                minHeight: 100, 
               }}
             />
           </View>
 
+           {/* Spacer View */}
+  <View style={{ width: 60 }} /> {/* Adjust width here for spacing */}
+
           {/* Right Column */}
-          <View style={{ flex: 1, padding: 15 }}>
+          <View style={{ flex: 1 }}>
             {/* Format */}
             <View style={{ marginBottom: 15 }}>
-              <Text style={{ fontSize: 16, marginBottom: 5 }}>Format Type:</Text>
+              <Text style={{ fontSize: 16, marginBottom: 10 }}>Format Type:</Text>
               <FormControl variant="outlined" fullWidth style={{ backgroundColor: '#fff', borderRadius: 5 }}>
                 <Select
                   value={formatType}
                   onChange={(e: SelectChangeEvent<string>) => setFormatType(e.target.value)}
-                  input={<OutlinedInput style={{ padding: 10, backgroundColor: '#fff', borderRadius: 5 }} />}
+                  input={<OutlinedInput style={{ padding: 10, backgroundColor: '#fff', borderRadius: 5, borderColor: '#ccc' }} />}
                   displayEmpty
                   style={{
                     backgroundColor: '#fff',
                     color: '#333',
+                    borderRadius: 5,
+                    height: 56, // Set a consistent height
                   }}
                 >
                   <MenuItem value="Format 1">Comedy</MenuItem>
@@ -85,16 +95,18 @@ const VideoSection: React.FC<VideoSectionProps> = ({
 
             {/* Target Length */}
             <View style={{ marginBottom: 15 }}>
-              <Text style={{ fontSize: 16, marginBottom: 5 }}>Target Length:</Text>
+              <Text style={{ fontSize: 16, marginBottom: 10 }}>Target Length:</Text>
               <FormControl variant="outlined" fullWidth style={{ backgroundColor: '#fff', borderRadius: 5 }}>
                 <Select
                   value={selectedCategory}
                   onChange={(e: SelectChangeEvent<string>) => setSelectedCategory(e.target.value)}
-                  input={<OutlinedInput style={{ padding: 10, backgroundColor: '#fff', borderRadius: 5 }} />}
+                  input={<OutlinedInput style={{ padding: 10, backgroundColor: '#fff', borderRadius: 5, borderColor: '#ccc' }} />}
                   displayEmpty
                   style={{
                     backgroundColor: '#fff',
                     color: '#333',
+                    borderRadius: 5,
+                    height: 56, // Set a consistent height
                   }}
                 >
                   <MenuItem value="Category 1">5 min, 800 words</MenuItem>
@@ -106,16 +118,18 @@ const VideoSection: React.FC<VideoSectionProps> = ({
 
             {/* Video Title */}
             <View style={{ marginBottom: 15 }}>
-              <Text style={{ fontSize: 16, marginBottom: 5 }}>Video Title:</Text>
+              <Text style={{ fontSize: 20, marginBottom: 10 }}>Video Title:</Text>
               <TextInput
                 label="Video Title"
                 value={title}
                 style={{
-                  marginBottom: 10,
-                  backgroundColor: '#fff',
-                  padding: 10,
+                  backgroundColor: '#fff', // Background color for TextInput
+                  paddingTop: 10,
                   borderRadius: 5,
                   color: '#333',
+                  borderWidth: 1,
+                  borderColor: '#ccc', // Add a border color
+                  height: 26, // Set a consistent height
                 }}
                 onChangeText={setTitle}
               />

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as PaperProvider } from 'react-native-paper'; // Import PaperProvider
 
@@ -15,9 +15,13 @@ import ChannelSettingsPage from './pages/ChannelSettings/ChannelSettingsPage';
 import ThumbnailPage from './pages/Thumbnail/ThumbnailPage';
 import AnalyticsPage from './pages/Analytics/AnalyticsPage';
 import EditScript from './pages/Scripts/EditScript';
-import LogInModal from './components/LogInModal';
-import SignUpModal from './components/SignUpModal';
 import LandingPage from './pages/LandingPage';
+import EngagementPage from './pages/Engagement/Engagement';
+import TonePage from './pages/Tone/Tone';
+import InsightsPage from './pages/Insights/Insights';
+import PreferencesPage from './pages/Preferences/Preferences';
+
+
 
 function App() {
   return (
@@ -41,19 +45,62 @@ function App() {
                       </PrivateRoute>
                     }
                   />
-                  <Route
-                    path="/youtubeChannelSeetings"
-                    element={
-                      <PrivateRoute>
-                        <ChannelSettingsPage />
-                      </PrivateRoute>
-                    }
-                  />
+                 
                   <Route
                     path="/script"
                     element={
                       <PrivateRoute>
                         <ScriptPage />
+                      </PrivateRoute>
+                    }
+                  />
+
+                  <Route
+                    path="/Engagement"
+                    element={
+                      <PrivateRoute>
+                        <EngagementPage />
+                      </PrivateRoute>
+                    }
+                  />
+
+
+                  <Route
+                    path="/Tone"
+                    element={
+                      <PrivateRoute>
+                        <TonePage />
+                      </PrivateRoute>
+                    }
+                  />
+
+
+                  <Route
+                    path="/insights"
+                    element={
+                      <PrivateRoute>
+                        <InsightsPage />
+                      </PrivateRoute>
+                    }
+                  />
+
+
+                  <Route
+                    path="/preferences"
+                    element={
+                      <PrivateRoute>
+                        <PreferencesPage />
+                      </PrivateRoute>
+                    }
+                  />
+
+
+
+                  <Route
+                    path="/youtubeChannelSeetings"
+                    element={
+                      <PrivateRoute>
+                        <ChannelSettingsPage />
                       </PrivateRoute>
                     }
                   />

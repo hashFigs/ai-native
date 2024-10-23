@@ -35,12 +35,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     </View>
     
     {/* Submenu */}
-    <View style={{  backgroundColor: '#666' }}>
+    <View style={{backgroundColor: '#fff' }}>
       <SubMenu  />
     </View>
 
     {/* Main Content */}
-    <View>{children}</View>
+    <View style={{backgroundColor: '#f3f4f6'}}>
+      {children}
+    </View>
 
     <Footer />  
   
