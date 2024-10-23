@@ -1,20 +1,21 @@
-// src/components/PrivateRoute.tsx
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { getTokenFromLocalStorage } from '../utils/localStorage';
+import { useAuth } from '../context/AuthContext';
 
 interface PrivateRouteProps {
   children: JSX.Element;
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
-  const token = getTokenFromLocalStorage();
+  const { isLoggedIn } = useAuth();  // Use the authentication context
   const location = useLocation();
 
-  if (!token) {
+  if (!isLoggedIn) {
+    // If user is not logged in, redirect to login page
     return <Navigate to="/login" state={{ from: location }} />;
   }
 
+  // If the user is authenticated, allow access to the protected route
   return children;
 };
 
