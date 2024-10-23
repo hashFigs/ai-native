@@ -1,7 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';  
 import { Button } from 'react-native-paper';
-import { StyleSheet, View, Text } from 'react-native';  
+import { StyleSheet, View } from 'react-native';  
 import { useAuth } from '../context/AuthContext';  
 
 const Menu: React.FC<{ 
@@ -9,7 +8,6 @@ const Menu: React.FC<{
   onShowSignUp: () => void 
 }> = ({ onShowLogin, onShowSignUp }) => {
   const { isLoggedIn, logOut } = useAuth();
-  const navigate = useNavigate(); 
 
   return (
     <nav>

@@ -58,7 +58,7 @@ const EditScript: React.FC = () => {
            
             height: 'auto',
   }}>
-            {formattedScript.map((line:string, index: number) => (
+            {formattedScript.map(( index: number) => (
               <TextInput
                 key={index}
                 mode="outlined"

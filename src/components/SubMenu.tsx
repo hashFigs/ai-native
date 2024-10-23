@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthContext';
 
 
 const SubMenu: React.FC = () => {
-  const { isLoggedIn, logOut } = useAuth();
+  const { isLoggedIn  } = useAuth();
   const navigate = useNavigate();
   const location = useLocation(); // To detect the current page
 

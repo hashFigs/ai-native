@@ -17,8 +17,8 @@ const CreateScript: React.FC = () => {
     selectedVoice: '',
   });
 
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<boolean>(false);
+  const [ , setError] = useState<string | null>(null);
+  const [ , setSuccess] = useState<boolean>(false);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData({

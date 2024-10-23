@@ -12,8 +12,8 @@ const AudienceAvatarCreated: React.FC = () => {
     return(
         <>  <View style = {styles.container}>
             <CenterContent>
-            <IonIcon name="md-checkmark-circle" size={30} color="green" />    
-            <MaterialIcon name="check-circle" size={30} color="green" />
+                <IonIcon name="md-checkmark-circle" size={30} color="green" />    
+                <MaterialIcon name="check-circle" size={30} color="green" />
                 <Text style = {styles.boldFont}>Your audience profile is ready</Text>
                 <Text>Now, let's craft your first script!</Text>
 
