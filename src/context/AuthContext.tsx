@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';  
 
 interface AuthContextType {
@@ -22,8 +22,16 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const navigate = useNavigate(); // Move this here
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  // Restore login state from localStorage when app initializes
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      setIsLoggedIn(true); // Set the state to logged in if token is found
+    }
+  }, []);
 
   const logIn = (token: string) => {
     localStorage.setItem('authToken', token);
@@ -33,7 +41,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const logOut = () => {
     localStorage.removeItem('authToken');
     setIsLoggedIn(false);
-    navigate('/'); // Redirect after logging out
+    navigate('/'); 
   };
 
   const value = { isLoggedIn, logIn, logOut };

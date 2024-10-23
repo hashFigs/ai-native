@@ -51,7 +51,13 @@ const EditScript: React.FC = () => {
         {/* Comments Section */}
         <View style={styles.column}>
           <Text style={styles.label}>Comments:</Text>
-          <View style={styles.textArea}>
+          <View style={{
+            backgroundColor: '#fff',
+            padding: 10,
+            borderRadius: 5,
+            color: '#333',
+            height: 'auto',
+  }}>
             {formattedScript.map((_, index: number) => (
               <TextInput
                 key={index}
@@ -70,7 +76,7 @@ const EditScript: React.FC = () => {
 
       {/* Button to go back */}
       <Button mode="contained" onPress={handleGoBack} style={styles.button}>
-        Create Another Script
+        Rewrite from comments
       </Button>
     </View>
   );

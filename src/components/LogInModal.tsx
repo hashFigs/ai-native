@@ -19,7 +19,7 @@ const LogInModal: React.FC<LogInModalProps> = ({ visible, onClose }) => {
   const [formData, setFormData] = useState<LoginParams>({ email: '', password: '' });
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
-  const { logIn } = useAuth(); // Access logIn function from AuthContext
+  const { logIn } = useAuth(); 
 
   const handleChange = (name: keyof LoginParams, value: string) => {
     setFormData({ ...formData, [name]: value });
@@ -36,7 +36,7 @@ const LogInModal: React.FC<LogInModalProps> = ({ visible, onClose }) => {
 
     try {
       const response = await apiRequest('/login', 'POST', formData); // Make sure the API endpoint is correct
-      logIn(response.token); // Call the logIn function from AuthContext
+      logIn(response.token); 
       setSuccess(true);
       onClose(); // Close modal after successful login
     } catch (error) {
