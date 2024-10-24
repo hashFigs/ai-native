@@ -7,17 +7,17 @@ interface TextCardProps {
 
 const TextCard: React.FC<TextCardProps> = ({ children }) => {
   return (
-    <View style={{ marginBottom: 40, paddingBottom: 34 }}>
+    <View style={{ marginBottom: 0, paddingBottom: 34 }}>
       <View
         style={{
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
-          marginTop: 60,
+          marginTop: 0,
           backgroundColor: '#fff', 
           borderRadius: 9,
           width: '100%',
-          maxWidth: '90%',
+          maxWidth: '70%',
           alignSelf: 'center',
           padding: 20,
         }}

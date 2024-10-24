@@ -1,12 +1,15 @@
 import React from 'react'
-
-
+import ToneInfo from '../../components/tone/ToneInfo'
+import ToneCreation from '../../components/tone/ToneCreation'
 
 const TonePage: React.FC = () => {
    
     
     return(
-        <h1> This is the Tone page </h1>
+        <>
+        <ToneInfo/>
+        <ToneCreation/>
+        </>
     )
 }
 
