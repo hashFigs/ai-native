@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button, Modal, Portal, TextInput, Title, Snackbar } from 'react-native-paper';
-import { apiRequest } from '../utils/apiClients'; // Ensure this is set up to handle your API requests
+import { apiRequest } from '../utils/apiClients'; 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useAuth } from '../context/AuthContext'; // Import AuthContext
+import { useAuth } from '../context/AuthContext';
 
 interface LoginParams {
   email: string;
@@ -19,7 +19,7 @@ const LogInModal: React.FC<LogInModalProps> = ({ visible, onClose }) => {
   const [formData, setFormData] = useState<LoginParams>({ email: '', password: '' });
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
-  const { logIn } = useAuth(); 
+  const { logIn } = useAuth();
 
   const handleChange = (name: keyof LoginParams, value: string) => {
     setFormData({ ...formData, [name]: value });
@@ -35,10 +35,10 @@ const LogInModal: React.FC<LogInModalProps> = ({ visible, onClose }) => {
     }
 
     try {
-      const response = await apiRequest('/login', 'POST', formData); // Make sure the API endpoint is correct
+      const response = await apiRequest('/login', 'POST', formData); 
       logIn(response.token); 
       setSuccess(true);
-      onClose(); // Close modal after successful login
+      onClose(); 
     } catch (error) {
       setError('Login failed. Please try again.');
     }
@@ -48,10 +48,15 @@ const LogInModal: React.FC<LogInModalProps> = ({ visible, onClose }) => {
     <Portal>
       <Modal visible={visible} onDismiss={onClose} contentContainerStyle={styles.modalContainer}>
         <View style={styles.modalContent}>
-          {/* Close Button */}
-          <MaterialCommunityIcons name="close" onPress={onClose} size={20} style={styles.closeButton} />
+          {/* Header with Title and Close Button */}
+          <View style={styles.header}>
+            <Title style={styles.title}>Log In</Title>
+            <TouchableOpacity onPress={onClose}>
+          
+              <i className="material-icons" style={styles.icon}>close</i>
 
-          <Title style={styles.title}>Log In</Title>
+            </TouchableOpacity>
+          </View>
 
           {error && (
             <Snackbar visible={!!error} onDismiss={() => setError(null)}>
@@ -94,28 +99,32 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '80%', // Make the modal width a percentage of the screen
-    maxWidth: 400, // Optional: set a max width for larger screens
+    width: '80%', 
+    maxWidth: 400, 
     height: 'auto',
-    position: 'absolute', // Changed from relative to absolute
-    top: '35%', // Center vertically
-    left: '50%', // Center horizontally
+    position: 'absolute', 
+    top: '35%', 
+    left: '50%', 
     transform: [{ translateX: -0.5 * 400 }, { translateY: -0.5 * 300 }],
   },
   modalContent: {
     width: '100%',
   },
-  closeButton: {
-    position: 'absolute',
-    right: 10, // Positioning in the top-right corner
-    top: 10,
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center', // Center vertically
+    marginBottom: 20,
   },
   title: {
-    marginBottom: 10,
     textAlign: 'center',
   },
   input: {
     marginBottom: 10,
+  },
+  icon: {
+    fontSize: 30,
+    color: '#666',
   },
 });
 
