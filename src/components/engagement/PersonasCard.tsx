@@ -18,9 +18,9 @@ interface InfoCardProps {
 const PersonasCard: React.FC<InfoCardProps> = ({ data }) => {
   // Function to split items into three columns with explicit typing
   const splitIntoColumns = (items: InfoItem[]): InfoItem[][] => {
-    const columns: InfoItem[][] = [[], [], []]; // Explicitly type the columns array
+    const columns: InfoItem[][] = [[], [], []]; 
     items.forEach((item, index) => {
-      columns[index % 3].push(item); // Distribute items across 3 columns
+      columns[index % 3].push(item); 
     });
     return columns;
   };
@@ -55,9 +55,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginVertical: 10,
     elevation: 5,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0,
     shadowRadius: 8,
   },
   sectionContainer: {
@@ -75,7 +73,7 @@ const styles = StyleSheet.create({
   },
   column: {
     flex: 1,
-    paddingHorizontal: 5, // Adds spacing between columns
+    paddingHorizontal: 5,
   },
   itemContainer: {
     marginBottom: 10,
