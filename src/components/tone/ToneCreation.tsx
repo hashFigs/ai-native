@@ -38,9 +38,7 @@ const ToneCreation: React.FC = () => {
                 'POST', 
                 { inputText },
                 { headers: { Authorization: `Bearer ${authToken}` } } );
-            console.log("@@response", response)    
             setGeneratedTone(response.tonePreview);
-            console.log(response.pacing)
             setPacing(response.tone.pacing);
             setTone(response.tone.tone);
             setWordChoice(response.tone.wordChoice);
@@ -84,7 +82,7 @@ const ToneCreation: React.FC = () => {
                             error={error}
                         />
                     )}
-                    {activeTab === 2 && <ToneEditComponent />}
+                    {activeTab === 2 && <ToneEditComponent transcripts={["asdasdasdasddas"]}/>}
                 </View>
                 {isSettingsVisible &&    
                 <ToneKeywords
