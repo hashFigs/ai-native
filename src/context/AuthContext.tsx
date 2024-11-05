@@ -25,11 +25,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-  // Restore login state from localStorage when app initializes
   useEffect(() => {
     const token = localStorage.getItem('authToken');
-    if (token) {
-      setIsLoggedIn(true); // Set the state to logged in if token is found
+    if (token) {  
+      setIsLoggedIn(true); 
     }
   }, []);
 

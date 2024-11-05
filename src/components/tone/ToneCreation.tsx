@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import TextCard from '../atoms/TextCard';
 import ToneCreationTopBar from './ToneCreationTopBar';
@@ -7,6 +7,20 @@ import ToneEditComponent from './ToneEditComponent';
 import ToneKeywords from './ToneKeywords';
 import { apiRequest } from '../../utils/apiClients';
 import { getTokenFromLocalStorage } from '../../utils/localStorage';
+
+interface Transcript {
+    videoId: string;
+    transcript: string;
+}
+
+interface Channel {
+    channelId: string;
+    handle: string;
+    title: string;
+    description: string;
+    transcripts: Transcript[];
+}
+
 
 const ToneCreation: React.FC = () => {
     const [activeTab, setActiveTab] = useState<number>(1);
@@ -18,7 +32,31 @@ const ToneCreation: React.FC = () => {
     const [generatedTone, setGeneratedTone] = useState<string>('');
     const [error, setError] = useState<string>('');
     const [isSettingsVisible, setIsSettingsVisible]=useState<boolean>(false)
+    const [loading, setLoading]=useState<boolean>(true)
+    const [dataChannel, setDataChannel] = useState<Channel[]>([]); 
 
+    
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const authToken = getTokenFromLocalStorage();
+            setLoading(true); 
+            const response = await apiRequest(
+              '/api/youtube/channels', 
+              'GET', 
+              { headers: { Authorization: `Bearer ${authToken}` } } );
+            setDataChannel(response || []); 
+            console.log("@@dataChanne, Tonel CREATION", response)
+          } catch (err) {
+            console.log("error")
+          } finally {
+            setLoading(false); 
+          }
+        };
+    
+        fetchData(); 
+      }, []); 
+     
     const handleGenerateTone = async () => {
         if (!inputText) {
             setError('All fields are required');
@@ -61,7 +99,7 @@ const ToneCreation: React.FC = () => {
                         style={[styles.tabButton, activeTab === 1 && styles.activeTab]}
                         onPress={() => setActiveTab(1)}
                     >
-                        <Text style={styles.tabText}>Create a Tone</Text>
+                    <Text style={styles.tabText}>Create a Tone</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={[styles.tabButton, activeTab === 2 && styles.activeTab]}
@@ -82,7 +120,7 @@ const ToneCreation: React.FC = () => {
                             error={error}
                         />
                     )}
-                    {activeTab === 2 && <ToneEditComponent transcripts={["asdasdasdasddas"]}/>}
+                    {activeTab === 2 && <ToneEditComponent transcripts={dataChannel[0].transcripts}/>}
                 </View>
                 {isSettingsVisible &&    
                 <ToneKeywords

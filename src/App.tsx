@@ -1,12 +1,12 @@
 
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Provider as PaperProvider } from 'react-native-paper'; // Import PaperProvider
+import { Provider as PaperProvider } from 'react-native-paper';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext'; // Adjust the import path as necessary
+import { AuthProvider } from './context/AuthContext';
 import HomePage from './pages/HomePage';
 import Login from './pages/Login';
-import Layout from './components/Layout'; // Import your Layout component
+import Layout from './components/Layout'; 
 import './App.css';
 import SignUp from './pages/SignUp';
 import PrivateRoute from './components/PrivateRoute';
