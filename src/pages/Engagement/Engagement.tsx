@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
 import TextCard from '../../components/atoms/TextCard';
 import AudienceAvatarCreated from '../../components/engagement/AudienceAvatarCreated';
 import PersonasCard from '../../components/engagement/PersonasCard';
+import { getTokenFromLocalStorage } from '../../utils/localStorage';
+import { apiRequest } from '../../utils/apiClients';
+import AddChannel from '../../components/engagement/AddChannel';
 
 const DemographicsData = [
   {
@@ -33,27 +36,67 @@ const PsychographicsData = [
 ];
 
 const EngagementPage: React.FC = () => {
+  const [data, setData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const authToken = getTokenFromLocalStorage();
+        setLoading(true); 
+        const response = await apiRequest(
+          '/api/youtube/channels', 
+          'GET', 
+          { headers: { Authorization: `Bearer ${authToken}` } } );
+        setData(response || []); 
+        console.log("@@data", response)
+      } catch (err) {
+        console.log("error")
+      } finally {
+        setLoading(false); 
+      }
+    };
+
+    fetchData(); 
+  }, []); 
+  
+  const handleSubmit = async () =>{
+    try {
+        const response = await apiRequest('/api/youtube/fetch-channel-data', 'POST', {"handle": "CleetusM"});
+        setData(response || []); 
+
+    }catch{
+
+    }
+   }
+
+  
   const { width } = useWindowDimensions();
-
-  // Adjust layout based on screen width
   const isSmallScreen = width < 600;
-
+   
   return (
     <>
-      <AudienceAvatarCreated />
+      {data.length === 0 ? (
+        <AddChannel addChannelSubmit = {handleSubmit}/>
+      ) : (
+        <>
+          <AudienceAvatarCreated />
 
-      <TextCard>
-        <Text> This is the Engagement page </Text>
+          <TextCard>
+            <Text> This is the Engagement page </Text>
 
-        <View style={[styles.personasContainer, isSmallScreen && styles.personasContainerSmall]}>
-          <View style={styles.personaWrapper}>
-            <PersonasCard data={DemographicsData} />
-          </View>
-          <View style={styles.personaWrapper}>
-            <PersonasCard data={PsychographicsData} />
-          </View>
-        </View>
-      </TextCard>
+            <View style={[styles.personasContainer, isSmallScreen && styles.personasContainerSmall]}>
+              <View style={styles.personaWrapper}>
+                <PersonasCard data={DemographicsData} />
+              </View>
+              <View style={styles.personaWrapper}>
+                <PersonasCard data={PsychographicsData} />
+              </View>
+            </View>
+          </TextCard>
+        </>
+      )}
     </>
   );
 };

@@ -7,7 +7,6 @@ import SubMenu from './SubMenu';
 import Footer from './Footer';
 import {  View, Image, Text, Dimensions } from 'react-native';  
 
-//import Logo from '../assets/logo.webp';
 import Logo2 from '../assets/logo2.webp';
 
 
