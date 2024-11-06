@@ -21,10 +21,12 @@
     "react-native-paper": "^5.12.5",
     "react-native-vector-icons": "^10.2.0",
     "react-native-web": "^0.19.13",
-    "react-router-dom": "^6.27.0"
+    "react-router-dom": "^6.27.0",
+    "styled-components": "^6.1.13"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
+    "@types/lodash.debounce": "^4.0.9",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
     "@types/react-native-vector-icons": "^6.4.18",

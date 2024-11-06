@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, StyleSheet } from 'react-native';
+import { Text, View, TextInput, StyleSheet, FlatList } from 'react-native';
+import { useTheme } from 'styled-components/native';
 
 interface Transcript {
     videoId: string;
@@ -11,33 +12,55 @@ interface Itone {
 }
 
 const ToneEditComponent: React.FC<Itone> = ({ transcripts }) => {
-    const [editableTranscripts, setEditableTranscripts] = useState(
-        transcripts.map((item) => item.transcript)
+    const theme = useTheme();
+
+    // State with a type for editable transcripts
+    const [editableTranscripts, setEditableTranscripts] = useState<{ [videoId: string]: string }>(
+        transcripts.reduce((acc, item) => ({ ...acc, [item.videoId]: item.transcript }), {})
     );
 
-    const handleTranscriptChange = (text: string, index: number) => {
-        const updatedTranscripts = [...editableTranscripts];
-        updatedTranscripts[index] = text;
-        setEditableTranscripts(updatedTranscripts);
+    const handleTranscriptChange = (text: string, videoId: string) => {
+        setEditableTranscripts((prev) => ({ ...prev, [videoId]: text }));
     };
+
+    const renderItem = ({ item }: { item: Transcript }) => (
+        <View style={styles.textInputContainer}>
+            <Text style={[styles.videoLabel, { fontFamily: theme.fonts.regular, color: theme.colors.text, fontSize: theme.fontsize.title }]}>
+                Transcript for video {item.videoId}:
+            </Text>
+            <TextInput
+                style={[
+                    styles.textInput,
+                    {
+                        fontFamily: theme.fonts.regular,
+                        color: theme.colors.text,
+                        fontSize: 16,
+                        lineHeight: 16 * theme.lineHeight.extra,
+                    },
+                ]}
+                multiline
+                scrollEnabled
+                value={editableTranscripts[item.videoId]}
+                onChangeText={(text) => handleTranscriptChange(text, item.videoId)}
+                numberOfLines={10}
+                maxLength={1000}
+            />
+        </View>
+    );
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>This is the Edit Component</Text>
-            {transcripts.map((item, index) => (
-                <View key={item.videoId} style={styles.textInputContainer}>
-                    <Text style={styles.videoLabel}>Transcript for video {item.videoId}:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        multiline
-                        scrollEnabled // Enable scrolling within TextInput
-                        value={editableTranscripts[index]}
-                        onChangeText={(text) => handleTranscriptChange(text, index)}
-                        numberOfLines={10} // Display up to 10 lines initially
-                        maxLength={1000} // Optional: limit total characters
-                    />
-                </View>
-            ))}
+            <Text style={[styles.title, { fontFamily: theme.fonts.bold, color: theme.colors.text }]}>
+                This is the Edit Component
+            </Text>
+            <FlatList
+                data={transcripts}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.videoId}
+                initialNumToRender={5}
+                maxToRenderPerBatch={5}
+                windowSize={10}
+            />
         </View>
     );
 };
@@ -49,7 +72,6 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 18,
-        fontWeight: 'bold',
         marginBottom: 12,
     },
     textInputContainer: {
@@ -57,17 +79,15 @@ const styles = StyleSheet.create({
     },
     videoLabel: {
         fontSize: 14,
-        fontWeight: '600',
         marginBottom: 4,
     },
     textInput: {
-        fontSize: 14,
         padding: 8,
-        height: 200, 
+        height: 200,
         borderWidth: 1,
         borderColor: '#ddd',
         borderRadius: 8,
-        textAlignVertical: 'top', 
+        textAlignVertical: 'top',
     },
 });
 

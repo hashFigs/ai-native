@@ -20,6 +20,10 @@ import EngagementPage from './pages/Engagement/Engagement';
 import TonePage from './pages/Tone/Tone';
 import InsightsPage from './pages/Insights/Insights';
 import PreferencesPage from './pages/Preferences/Preferences';
+import { ThemeProvider } from 'styled-components/native';
+import { theme } from './theme';
+import GlobalStyle from './GlobalStyle';
+
 
 
 
@@ -27,6 +31,8 @@ function App() {
   return (
     <SafeAreaProvider>
       <PaperProvider> 
+      <ThemeProvider theme={theme}>
+      < GlobalStyle/>
         <Router>
           <AuthProvider>
             <Layout>
@@ -126,6 +132,8 @@ function App() {
             
             </AuthProvider>  
           </Router>
+          
+          </ThemeProvider>
         </PaperProvider>
       </SafeAreaProvider>
     

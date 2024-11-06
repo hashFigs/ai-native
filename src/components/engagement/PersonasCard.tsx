@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
+import styled, { useTheme } from 'styled-components/native';
 
 interface InfoItem {
   title: string;
@@ -16,77 +17,85 @@ interface InfoCardProps {
 }
 
 const PersonasCard: React.FC<InfoCardProps> = ({ data }) => {
+  const theme = useTheme();
+
   // Function to split items into three columns with explicit typing
   const splitIntoColumns = (items: InfoItem[]): InfoItem[][] => {
-    const columns: InfoItem[][] = [[], [], []]; 
+    const columns: InfoItem[][] = [[], [], []];
     items.forEach((item, index) => {
-      columns[index % 3].push(item); 
+      columns[index % 3].push(item);
     });
     return columns;
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.cardContainer}>
+    <StyledScrollView contentContainerStyle={{ padding: 20 }}>
       {data.map((section, index) => (
-        <View key={index} style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>{section.sectionTitle}</Text>
-          <View style={styles.columnsContainer}>
+        <SectionContainer key={index}>
+          <SectionTitle theme={theme}>{section.sectionTitle}</SectionTitle>
+          <ColumnsContainer>
             {splitIntoColumns(section.items).map((column, colIndex) => (
-              <View key={colIndex} style={styles.column}>
+              <Column key={colIndex}>
                 {column.map((item, idx) => (
-                  <View key={idx} style={styles.itemContainer}>
-                    <Text style={styles.itemTitle}>{item.title}</Text>
-                    <Text style={styles.itemDetails}>{item.details}</Text>
-                  </View>
+                  <ItemContainer key={idx}>
+                    <ItemTitle theme={theme}>{item.title}</ItemTitle>
+                    <ItemDetails theme={theme}>{item.details}</ItemDetails>
+                  </ItemContainer>
                 ))}
-              </View>
+              </Column>
             ))}
-          </View>
-        </View>
+          </ColumnsContainer>
+        </SectionContainer>
       ))}
-    </ScrollView>
+    </StyledScrollView>
   );
 };
 
-const styles = StyleSheet.create({
-  cardContainer: {
-    padding: 20,
-    backgroundColor: '#f3f4f6',
-    borderRadius: 15,
-    marginVertical: 10,
-    elevation: 5,
-    shadowOpacity: 0,
-    shadowRadius: 8,
-  },
-  sectionContainer: {
-    marginBottom: 20,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#333',
-  },
-  columnsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  column: {
-    flex: 1,
-    paddingHorizontal: 5,
-  },
-  itemContainer: {
-    marginBottom: 10,
-  },
-  itemTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#666',
-  },
-  itemDetails: {
-    fontSize: 16,
-    color: '#333',
-  },
-});
+// Styled Components
+const StyledScrollView = styled(ScrollView)`
+  background-color: #f3f4f6;
+  border-radius: 15px;
+  margin-vertical: 10px;
+  elevation: 5;
+  shadow-opacity: 0;
+  shadow-radius: 8px;
+`;
+
+const SectionContainer = styled.View`
+  margin-bottom: 20px;
+`;
+
+const SectionTitle = styled.Text`
+  font-size: ${({ theme }) => theme.fontsize.title}px;
+  font-family: ${({ theme }) => theme.fonts.bold};
+  margin-bottom: 10px;
+  color: #333;
+`;
+
+const ColumnsContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const Column = styled.View`
+  flex: 1;
+  padding-horizontal: 5px;
+`;
+
+const ItemContainer = styled.View`
+  margin-bottom: 10px;
+`;
+
+const ItemTitle = styled.Text`
+  font-size: ${({ theme }) => theme.fontsize.normal}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  color: #666;
+`;
+
+const ItemDetails = styled.Text`
+  font-size: ${({ theme }) => theme.fontsize.normal}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  color: #333;
+`;
 
 export default PersonasCard;
