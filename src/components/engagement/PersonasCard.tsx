@@ -66,7 +66,7 @@ const SectionContainer = styled.View`
 `;
 
 const SectionTitle = styled.Text`
-  font-size: ${({ theme }) => theme.fontsize.title}px;
+  font-size: ${({ theme }) => theme.fontsize.title2}px;
   font-family: ${({ theme }) => theme.fonts.bold};
   margin-bottom: 10px;
   color: #333;

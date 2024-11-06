@@ -84,7 +84,7 @@ const EngagementPage: React.FC = () => {
           <AudienceAvatarCreated />
 
           <TextCard>
-            <Text> This is the Engagement page </Text>
+      
 
             <View style={[styles.personasContainer, isSmallScreen && styles.personasContainerSmall]}>
               <View style={styles.personaWrapper}>

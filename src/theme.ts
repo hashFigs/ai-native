@@ -22,7 +22,9 @@ export const theme: DefaultTheme = {
     fontsize:{
         small: 10,
         normal: 12,
-        title: 18
+        title: 18,
+        title1: 20,
+        title2: 22
     },
     lineHeight: {
         small: 0.75,

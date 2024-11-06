@@ -72,7 +72,7 @@ const ToneCreation: React.FC = () => {
         try {
             const authToken = getTokenFromLocalStorage();
             const response = await apiRequest(
-                '/tone/create', 
+                '/api/tone/create', 
                 'POST', 
                 { inputText },
                 { headers: { Authorization: `Bearer ${authToken}` } } );
